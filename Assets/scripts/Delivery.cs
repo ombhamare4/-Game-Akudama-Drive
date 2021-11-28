@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Delivery : MonoBehaviour
 {
     Color32 hasPackageColor = new Color32(15, 255, 0, 255);
     Color32 noPackageColor = new Color32(0, 255, 255, 255);
-    [SerializeField] float destroyDelay = 0.5f;
+    [SerializeField] 
+    float destroyDelay = 0.5f;
+    [SerializeField]
+    int PackageCount = 0;
     bool hasPackage = false;
     SpriteRenderer spriteRenderer;
 
@@ -30,6 +33,14 @@ public class Delivery : MonoBehaviour
             Debug.Log("Package Delivered");
             hasPackage = false;
             spriteRenderer.color = noPackageColor;
+            PackageCount += 1;
+        }
+    }
+    void Update() 
+    {
+        if (PackageCount==20)
+        {
+            SceneManager.LoadScene(2);
         }
     }
 
